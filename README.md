@@ -16,37 +16,40 @@ graph TD;
 Lampun sytyttäminen
 ```mermaid
 graph TD;
-    subgraph NIMI
-        A[Lamppu ei toimi] --> B{Lamppu kytketty?}
+    subgraph Lampun sytyttäminen
+        A([Lamppu ei toimi]) --> B{Lamppu kytketty?}
         B -- Kyllä --> D{Polttimo palanut?}
         D -- Ei --> F[Osta uusi lamppu]
     end
     B -- Ei --> C[Kytke lamppu]
-    B -- Kyllä --> D{Polttimo palanut?}
     D -- Kyllä --> E[Vaihda polttimo]
-    D -- Ei --> F[Osta uusi lamppu]
 ```
 ---
 Lomapäivä
 ```mermaid
 graph TD;
-    A[aloita] --> B[katso ulos ikkunasta]
-    B --> C{sataako?}
-    C -- kyllä --> D[pyysy kotona]
-    C -- ei --> E[mene rannalle]
-    D --> F[lopeta]
-    E --> F
+    subgraph Lomapäivä
+        A([aloita]) --> B[katso ulos ikkunasta]
+        B --> C{sataako?}
+        C -- ei --> E[mene rannalle]
+        E --> F([Lopeta])
+    end
+    C -- kyllä --> D[pysy kotona]
+    D --> G([lopeta])
 ```
 ---
 Herätys aamulla
 ```mermaid
 graph TD;
-    A[Alku] --> B[Herätyskello soi]
-    B --> C[Lepää]
-    C --> D{Oletko valmis nousemaan?}
-    D -- Ei --> E[Käytä Snooze-toimintoa]
-    D -- Kyllä --> F[Nouse ylös sängystä]
-    F --> G[Loppu]
+    subgraph Herätys
+        A([Alku]) --> B[Herätyskello soi]
+        B --> C{Oletko valmis nousemaan?}
+        C -- Kyllä --> D[Nouse ylös sängystä]
+        D --> E[Loppu]
+    end
+    C -- Ei --> F[Käytä Snooze-toimintoa]
+    F --> G[Lepää]
+    G --> B
 ```
 ---
 Mikä luku
@@ -56,8 +59,8 @@ graph TD;
     B --> C{luku == 0}
     C -- yes --> D["Luettu luku oli 0"]
     C -- no --> E["Luettu luku ei ollut 0"]
-    D --> F[Loppu]
-    E --> F[Loppu]
+    D --> F([Loppu])
+    E --> F([Loppu])
 ```
 ---
 Lukupeli
